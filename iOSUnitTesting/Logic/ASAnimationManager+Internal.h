@@ -12,4 +12,6 @@
 
 @property (assign, nonatomic) NSTimeInterval duration;
 
+- (void)_playBounceSound;
+
 @end

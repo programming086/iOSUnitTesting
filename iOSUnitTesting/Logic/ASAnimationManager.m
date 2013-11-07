@@ -44,7 +44,7 @@
     [UIView animateWithDuration:2.0 animations:^{
         _view.center = dest;
     } completion:^(BOOL finished) {
-        AudioServicesPlaySystemSound(_soundID);
+        [self _playBounceSound];
         
         [UIView animateWithDuration:2.0 animations:^{
             _view.center = _viewHome;
@@ -54,6 +54,12 @@
         
     }];
 
+}
+
+#pragma mark - private methods
+
+- (void)_playBounceSound {
+    AudioServicesPlaySystemSound(_soundID);
 }
 
 @end

@@ -58,7 +58,10 @@
     
     [[_mockDelegate expect] animationComplete];
     
-    [_objUnderTest bounceView:_viewBeingAnimated to:CGPointMake(5, 95)];
+    id wrapper = [OCMockObject partialMockForObject:_objUnderTest];
+    [[wrapper expect] _playBounceSound];
+    
+    [wrapper bounceView:_viewBeingAnimated to:CGPointMake(5, 95)];
     
     [self waitForAnimation];
     
@@ -67,6 +70,7 @@
     STAssertEquals(viewCenter.x, originalViewCenter.x, nil);
     STAssertEquals(viewCenter.y, originalViewCenter.y, nil);
     [_mockDelegate verify];
+    [wrapper verify];
 }
 
 @end

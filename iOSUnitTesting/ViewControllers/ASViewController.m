@@ -7,28 +7,28 @@
 //
 
 #import "ASViewController.h"
-#import <AudioToolbox/AudioToolbox.h>
 
 @interface ASViewController () {
     CGPoint _ballHomePosition;  // ball's home position
-    SystemSoundID _soundID; // ID for bounce sound
 }
 
 @end
 
 @implementation ASViewController
 
+- (id)init {
+    self = [super initWithNibName:@"ASViewController" bundle:[NSBundle bundleForClass:[self class]]];
+    if (self) {
+        self.animationManager = [[ASAnimationManager alloc] init];
+        self.animationManager.delegate = self;
+    }
+    return self;
+}
+
 #pragma mark - Memory manager
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
-}
-
-- (void)dealloc {
-    // unload sound
-    AudioServicesDisposeSystemSoundID(_soundID);
-    _soundID = 0;
 }
 
 #pragma mark - View life cycle
@@ -37,18 +37,6 @@
     [super viewDidLoad];
 	
     _ballHomePosition = self.ballImageView.center;
-    
-    // load the sound
-    NSString *soundFilePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"bounce" ofType:@"mp3"];
-    NSURL *soundFileUrl = [NSURL URLWithString:soundFilePath];
-    OSStatus status = AudioServicesCreateSystemSoundID((__bridge CFURLRef)(soundFileUrl), &_soundID);
-#warning status == -50
-//    NSAssert(status == 0, @"unexpected status: %ld", status);
-}
-
-- (void)viewDidUnload {
-    
-    [super viewDidUnload];
 }
 
 #pragma mark - Actions methods
@@ -75,20 +63,14 @@
     self.verticalButton.hidden = YES;
     self.horizontalButton.hidden = YES;
     
-    [UIView animateWithDuration:2.0 animations:^{
-        self.ballImageView.center = dest;
-    } completion:^(BOOL finished) {
-        AudioServicesPlaySystemSound(_soundID);
-        
-        [UIView animateWithDuration:2.0 animations:^{
-            self.ballImageView.center = _ballHomePosition;
-        } completion:^(BOOL finished) {
-            self.verticalButton.hidden = NO;
-            self.horizontalButton.hidden = NO;
-        }];
-        
-    }];
-    
+    [self.animationManager bounceView:self.ballImageView to:dest];
+}
+
+#pragma mark - ASAnimationManager delegate methods
+
+- (void)animationComplete {
+    self.verticalButton.hidden = NO;
+    self.horizontalButton.hidden = NO;
 }
 
 @end

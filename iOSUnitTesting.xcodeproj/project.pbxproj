@@ -20,12 +20,14 @@
 		2196583C182B735E0090D8F6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21965816182B735D0090D8F6 /* UIKit.framework */; };
 		2196583D182B735E0090D8F6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21965818182B735D0090D8F6 /* Foundation.framework */; };
 		21965845182B735E0090D8F6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21965843182B735E0090D8F6 /* InfoPlist.strings */; };
-		21965848182B735E0090D8F6 /* iOSUnitTestingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21965847182B735E0090D8F6 /* iOSUnitTestingTests.m */; };
 		21965854182B75010090D8F6 /* bounce.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 21965852182B75010090D8F6 /* bounce.mp3 */; };
 		21965855182B75010090D8F6 /* redball.png in Resources */ = {isa = PBXBuildFile; fileRef = 21965853182B75010090D8F6 /* redball.png */; };
 		2196585A182B75340090D8F6 /* ASViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21965858182B75340090D8F6 /* ASViewController.m */; };
 		2196585B182B75340090D8F6 /* ASViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21965859182B75340090D8F6 /* ASViewController.xib */; };
 		2196585D182B91920090D8F6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2196585C182B91920090D8F6 /* AudioToolbox.framework */; };
+		21965861182BA8FC0090D8F6 /* ASAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 21965860182BA8FC0090D8F6 /* ASAnimationManager.m */; };
+		2196586C182BB1F70090D8F6 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21965864182BB1F70090D8F6 /* libOCMock.a */; };
+		21965870182BB5360090D8F6 /* ASViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2196586F182BB5360090D8F6 /* ASViewControllerTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,14 +58,22 @@
 		2196583A182B735E0090D8F6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		21965842182B735E0090D8F6 /* iOSUnitTestingTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOSUnitTestingTests-Info.plist"; sourceTree = "<group>"; };
 		21965844182B735E0090D8F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		21965846182B735E0090D8F6 /* iOSUnitTestingTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSUnitTestingTests.h; sourceTree = "<group>"; };
-		21965847182B735E0090D8F6 /* iOSUnitTestingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSUnitTestingTests.m; sourceTree = "<group>"; };
 		21965852182B75010090D8F6 /* bounce.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bounce.mp3; sourceTree = "<group>"; };
 		21965853182B75010090D8F6 /* redball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redball.png; sourceTree = "<group>"; };
 		21965857182B75340090D8F6 /* ASViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASViewController.h; sourceTree = "<group>"; };
 		21965858182B75340090D8F6 /* ASViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASViewController.m; sourceTree = "<group>"; };
 		21965859182B75340090D8F6 /* ASViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASViewController.xib; sourceTree = "<group>"; };
 		2196585C182B91920090D8F6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		2196585F182BA8FC0090D8F6 /* ASAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASAnimationManager.h; sourceTree = "<group>"; };
+		21965860182BA8FC0090D8F6 /* ASAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASAnimationManager.m; sourceTree = "<group>"; };
+		21965864182BB1F70090D8F6 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
+		21965866182BB1F70090D8F6 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
+		21965867182BB1F70090D8F6 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
+		21965868182BB1F70090D8F6 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
+		21965869182BB1F70090D8F6 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
+		2196586A182BB1F70090D8F6 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
+		2196586B182BB1F70090D8F6 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
+		2196586F182BB5360090D8F6 /* ASViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASViewControllerTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +95,7 @@
 				2196583B182B735E0090D8F6 /* SenTestingKit.framework in Frameworks */,
 				2196583C182B735E0090D8F6 /* UIKit.framework in Frameworks */,
 				2196583D182B735E0090D8F6 /* Foundation.framework in Frameworks */,
+				2196586C182BB1F70090D8F6 /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +138,7 @@
 			children = (
 				21965825182B735D0090D8F6 /* ASAppDelegate.h */,
 				21965826182B735D0090D8F6 /* ASAppDelegate.m */,
+				2196585E182BA8E10090D8F6 /* Logic */,
 				21965856182B75340090D8F6 /* ViewControllers */,
 				21965851182B75010090D8F6 /* Resources */,
 				2196581D182B735D0090D8F6 /* Supporting Files */,
@@ -151,8 +163,8 @@
 		21965840182B735E0090D8F6 /* iOSUnitTestingTests */ = {
 			isa = PBXGroup;
 			children = (
-				21965846182B735E0090D8F6 /* iOSUnitTestingTests.h */,
-				21965847182B735E0090D8F6 /* iOSUnitTestingTests.m */,
+				21965862182BB1F70090D8F6 /* Externals */,
+				2196586D182BB43E0090D8F6 /* ViewControllers */,
 				21965841182B735E0090D8F6 /* Supporting Files */,
 			);
 			path = iOSUnitTestingTests;
@@ -185,6 +197,54 @@
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
+		};
+		2196585E182BA8E10090D8F6 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				2196585F182BA8FC0090D8F6 /* ASAnimationManager.h */,
+				21965860182BA8FC0090D8F6 /* ASAnimationManager.m */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		21965862182BB1F70090D8F6 /* Externals */ = {
+			isa = PBXGroup;
+			children = (
+				21965863182BB1F70090D8F6 /* OCMock-2.2.1 */,
+			);
+			path = Externals;
+			sourceTree = "<group>";
+		};
+		21965863182BB1F70090D8F6 /* OCMock-2.2.1 */ = {
+			isa = PBXGroup;
+			children = (
+				21965865182BB1F70090D8F6 /* OCMock */,
+				21965864182BB1F70090D8F6 /* libOCMock.a */,
+			);
+			path = "OCMock-2.2.1";
+			sourceTree = "<group>";
+		};
+		21965865182BB1F70090D8F6 /* OCMock */ = {
+			isa = PBXGroup;
+			children = (
+				21965866182BB1F70090D8F6 /* NSNotificationCenter+OCMAdditions.h */,
+				21965867182BB1F70090D8F6 /* OCMArg.h */,
+				21965868182BB1F70090D8F6 /* OCMConstraint.h */,
+				21965869182BB1F70090D8F6 /* OCMock.h */,
+				2196586A182BB1F70090D8F6 /* OCMockObject.h */,
+				2196586B182BB1F70090D8F6 /* OCMockRecorder.h */,
+			);
+			path = OCMock;
+			sourceTree = "<group>";
+		};
+		2196586D182BB43E0090D8F6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2196586F182BB5360090D8F6 /* ASViewControllerTest.m */,
+			);
+			name = ViewControllers;
+			path = iOSUnitTestingTests/ViewControllers;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -302,6 +362,7 @@
 				21965823182B735D0090D8F6 /* main.m in Sources */,
 				21965827182B735D0090D8F6 /* ASAppDelegate.m in Sources */,
 				2196585A182B75340090D8F6 /* ASViewController.m in Sources */,
+				21965861182BA8FC0090D8F6 /* ASAnimationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21965848182B735E0090D8F6 /* iOSUnitTestingTests.m in Sources */,
+				21965870182BB5360090D8F6 /* ASViewControllerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,7 +494,13 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOSUnitTesting/iOSUnitTesting-Prefix.pch";
+				HEADER_SEARCH_PATHS = "${SRCROOT}/iOSUnitTestingTests/Externals/OCMock-2.2.1/";
 				INFOPLIST_FILE = "iOSUnitTestingTests/iOSUnitTestingTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/iOSUnitTestingTests/Externals/OCMock-2.2.1\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -450,7 +517,13 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOSUnitTesting/iOSUnitTesting-Prefix.pch";
+				HEADER_SEARCH_PATHS = "${SRCROOT}/iOSUnitTestingTests/Externals/OCMock-2.2.1/";
 				INFOPLIST_FILE = "iOSUnitTestingTests/iOSUnitTestingTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/iOSUnitTestingTests/Externals/OCMock-2.2.1\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;

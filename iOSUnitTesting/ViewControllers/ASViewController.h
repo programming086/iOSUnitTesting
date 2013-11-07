@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASAnimationManager.h"
 
-@interface ASViewController : UIViewController
+@interface ASViewController : UIViewController <ASAnimationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *ballImageView;
 @property (weak, nonatomic) IBOutlet UIButton *verticalButton;
 @property (weak, nonatomic) IBOutlet UIButton *horizontalButton;
+
+@property (strong, nonatomic) ASAnimationManager *animationManager;
 
 - (IBAction)verticalButtonDidClicked:(id)sender;
 

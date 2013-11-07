@@ -23,6 +23,9 @@
 - (id)init {
     self = [super init];
     if (self) {
+        
+        _duration = 2.0;    // default animation duration
+        
         // load the sound
         NSString *soundFilePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"bounce" ofType:@"mp3"];
         NSURL *soundFileUrl = [NSURL URLWithString:soundFilePath];
@@ -41,12 +44,12 @@
     _view = view;
     _viewHome = view.center;
     
-    [UIView animateWithDuration:2.0 animations:^{
+    [UIView animateWithDuration:_duration animations:^{
         _view.center = dest;
     } completion:^(BOOL finished) {
         [self _playBounceSound];
         
-        [UIView animateWithDuration:2.0 animations:^{
+        [UIView animateWithDuration:_duration animations:^{
             _view.center = _viewHome;
         } completion:^(BOOL finished) {
             [self.delegate animationComplete];

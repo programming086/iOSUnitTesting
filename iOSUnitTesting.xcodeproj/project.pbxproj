@@ -29,6 +29,7 @@
 		2196586C182BB1F70090D8F6 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21965864182BB1F70090D8F6 /* libOCMock.a */; };
 		21965870182BB5360090D8F6 /* ASViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2196586F182BB5360090D8F6 /* ASViewControllerTest.m */; };
 		21965878182BD5640090D8F6 /* ASAnimationManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 21965877182BD5640090D8F6 /* ASAnimationManagerTest.m */; };
+		2196587B182BE0160090D8F6 /* ASAnimationSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 2196587A182BE0160090D8F6 /* ASAnimationSegment.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,8 @@
 		2196586F182BB5360090D8F6 /* ASViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASViewControllerTest.m; sourceTree = "<group>"; };
 		21965872182BD4D60090D8F6 /* ASAnimationManager+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ASAnimationManager+Internal.h"; sourceTree = "<group>"; };
 		21965877182BD5640090D8F6 /* ASAnimationManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASAnimationManagerTest.m; sourceTree = "<group>"; };
+		21965879182BE0160090D8F6 /* ASAnimationSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASAnimationSegment.h; sourceTree = "<group>"; };
+		2196587A182BE0160090D8F6 /* ASAnimationSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASAnimationSegment.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +211,8 @@
 				21965872182BD4D60090D8F6 /* ASAnimationManager+Internal.h */,
 				2196585F182BA8FC0090D8F6 /* ASAnimationManager.h */,
 				21965860182BA8FC0090D8F6 /* ASAnimationManager.m */,
+				21965879182BE0160090D8F6 /* ASAnimationSegment.h */,
+				2196587A182BE0160090D8F6 /* ASAnimationSegment.m */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -390,6 +395,7 @@
 				21965827182B735D0090D8F6 /* ASAppDelegate.m in Sources */,
 				2196585A182B75340090D8F6 /* ASViewController.m in Sources */,
 				21965861182BA8FC0090D8F6 /* ASAnimationManager.m in Sources */,
+				2196587B182BE0160090D8F6 /* ASAnimationSegment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

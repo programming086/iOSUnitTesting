@@ -16,13 +16,16 @@
 		21965829182B735D0090D8F6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 21965828182B735D0090D8F6 /* Default.png */; };
 		2196582B182B735D0090D8F6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2196582A182B735D0090D8F6 /* Default@2x.png */; };
 		2196582D182B735E0090D8F6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2196582C182B735E0090D8F6 /* Default-568h@2x.png */; };
-		21965830182B735E0090D8F6 /* ASViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2196582F182B735E0090D8F6 /* ASViewController.m */; };
-		21965833182B735E0090D8F6 /* ASViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21965831182B735E0090D8F6 /* ASViewController.xib */; };
 		2196583B182B735E0090D8F6 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2196583A182B735E0090D8F6 /* SenTestingKit.framework */; };
 		2196583C182B735E0090D8F6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21965816182B735D0090D8F6 /* UIKit.framework */; };
 		2196583D182B735E0090D8F6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21965818182B735D0090D8F6 /* Foundation.framework */; };
 		21965845182B735E0090D8F6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 21965843182B735E0090D8F6 /* InfoPlist.strings */; };
 		21965848182B735E0090D8F6 /* iOSUnitTestingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 21965847182B735E0090D8F6 /* iOSUnitTestingTests.m */; };
+		21965854182B75010090D8F6 /* bounce.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 21965852182B75010090D8F6 /* bounce.mp3 */; };
+		21965855182B75010090D8F6 /* redball.png in Resources */ = {isa = PBXBuildFile; fileRef = 21965853182B75010090D8F6 /* redball.png */; };
+		2196585A182B75340090D8F6 /* ASViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21965858182B75340090D8F6 /* ASViewController.m */; };
+		2196585B182B75340090D8F6 /* ASViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21965859182B75340090D8F6 /* ASViewController.xib */; };
+		2196585D182B91920090D8F6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2196585C182B91920090D8F6 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,15 +52,18 @@
 		21965828182B735D0090D8F6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		2196582A182B735D0090D8F6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		2196582C182B735E0090D8F6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		2196582E182B735E0090D8F6 /* ASViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASViewController.h; sourceTree = "<group>"; };
-		2196582F182B735E0090D8F6 /* ASViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASViewController.m; sourceTree = "<group>"; };
-		21965832182B735E0090D8F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ASViewController.xib; sourceTree = "<group>"; };
 		21965839182B735E0090D8F6 /* iOSUnitTestingTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSUnitTestingTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2196583A182B735E0090D8F6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		21965842182B735E0090D8F6 /* iOSUnitTestingTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOSUnitTestingTests-Info.plist"; sourceTree = "<group>"; };
 		21965844182B735E0090D8F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		21965846182B735E0090D8F6 /* iOSUnitTestingTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSUnitTestingTests.h; sourceTree = "<group>"; };
 		21965847182B735E0090D8F6 /* iOSUnitTestingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSUnitTestingTests.m; sourceTree = "<group>"; };
+		21965852182B75010090D8F6 /* bounce.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bounce.mp3; sourceTree = "<group>"; };
+		21965853182B75010090D8F6 /* redball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redball.png; sourceTree = "<group>"; };
+		21965857182B75340090D8F6 /* ASViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASViewController.h; sourceTree = "<group>"; };
+		21965858182B75340090D8F6 /* ASViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASViewController.m; sourceTree = "<group>"; };
+		21965859182B75340090D8F6 /* ASViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASViewController.xib; sourceTree = "<group>"; };
+		2196585C182B91920090D8F6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2196585D182B91920090D8F6 /* AudioToolbox.framework in Frameworks */,
 				21965817182B735D0090D8F6 /* UIKit.framework in Frameworks */,
 				21965819182B735D0090D8F6 /* Foundation.framework in Frameworks */,
 				2196581B182B735D0090D8F6 /* CoreGraphics.framework in Frameworks */,
@@ -106,6 +113,7 @@
 		21965815182B735D0090D8F6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2196585C182B91920090D8F6 /* AudioToolbox.framework */,
 				21965816182B735D0090D8F6 /* UIKit.framework */,
 				21965818182B735D0090D8F6 /* Foundation.framework */,
 				2196581A182B735D0090D8F6 /* CoreGraphics.framework */,
@@ -119,9 +127,8 @@
 			children = (
 				21965825182B735D0090D8F6 /* ASAppDelegate.h */,
 				21965826182B735D0090D8F6 /* ASAppDelegate.m */,
-				2196582E182B735E0090D8F6 /* ASViewController.h */,
-				2196582F182B735E0090D8F6 /* ASViewController.m */,
-				21965831182B735E0090D8F6 /* ASViewController.xib */,
+				21965856182B75340090D8F6 /* ViewControllers */,
+				21965851182B75010090D8F6 /* Resources */,
 				2196581D182B735D0090D8F6 /* Supporting Files */,
 			);
 			path = iOSUnitTesting;
@@ -158,6 +165,25 @@
 				21965843182B735E0090D8F6 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		21965851182B75010090D8F6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				21965852182B75010090D8F6 /* bounce.mp3 */,
+				21965853182B75010090D8F6 /* redball.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		21965856182B75340090D8F6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				21965857182B75340090D8F6 /* ASViewController.h */,
+				21965858182B75340090D8F6 /* ASViewController.m */,
+				21965859182B75340090D8F6 /* ASViewController.xib */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,7 +262,9 @@
 				21965829182B735D0090D8F6 /* Default.png in Resources */,
 				2196582B182B735D0090D8F6 /* Default@2x.png in Resources */,
 				2196582D182B735E0090D8F6 /* Default-568h@2x.png in Resources */,
-				21965833182B735E0090D8F6 /* ASViewController.xib in Resources */,
+				21965854182B75010090D8F6 /* bounce.mp3 in Resources */,
+				21965855182B75010090D8F6 /* redball.png in Resources */,
+				2196585B182B75340090D8F6 /* ASViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +301,7 @@
 			files = (
 				21965823182B735D0090D8F6 /* main.m in Sources */,
 				21965827182B735D0090D8F6 /* ASAppDelegate.m in Sources */,
-				21965830182B735E0090D8F6 /* ASViewController.m in Sources */,
+				2196585A182B75340090D8F6 /* ASViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,14 +330,6 @@
 				21965820182B735D0090D8F6 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		21965831182B735E0090D8F6 /* ASViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				21965832182B735E0090D8F6 /* en */,
-			);
-			name = ASViewController.xib;
 			sourceTree = "<group>";
 		};
 		21965843182B735E0090D8F6 /* InfoPlist.strings */ = {

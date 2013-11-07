@@ -28,6 +28,7 @@
 		21965861182BA8FC0090D8F6 /* ASAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 21965860182BA8FC0090D8F6 /* ASAnimationManager.m */; };
 		2196586C182BB1F70090D8F6 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21965864182BB1F70090D8F6 /* libOCMock.a */; };
 		21965870182BB5360090D8F6 /* ASViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2196586F182BB5360090D8F6 /* ASViewControllerTest.m */; };
+		21965878182BD5640090D8F6 /* ASAnimationManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 21965877182BD5640090D8F6 /* ASAnimationManagerTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		2196586A182BB1F70090D8F6 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		2196586B182BB1F70090D8F6 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		2196586F182BB5360090D8F6 /* ASViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASViewControllerTest.m; sourceTree = "<group>"; };
+		21965872182BD4D60090D8F6 /* ASAnimationManager+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ASAnimationManager+Internal.h"; sourceTree = "<group>"; };
+		21965877182BD5640090D8F6 /* ASAnimationManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASAnimationManagerTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				21965862182BB1F70090D8F6 /* Externals */,
+				21965875182BD54C0090D8F6 /* Logic */,
 				2196586D182BB43E0090D8F6 /* ViewControllers */,
 				21965841182B735E0090D8F6 /* Supporting Files */,
 			);
@@ -201,6 +205,7 @@
 		2196585E182BA8E10090D8F6 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				21965872182BD4D60090D8F6 /* ASAnimationManager+Internal.h */,
 				2196585F182BA8FC0090D8F6 /* ASAnimationManager.h */,
 				21965860182BA8FC0090D8F6 /* ASAnimationManager.m */,
 			);
@@ -245,6 +250,14 @@
 			name = ViewControllers;
 			path = iOSUnitTestingTests/ViewControllers;
 			sourceTree = SOURCE_ROOT;
+		};
+		21965875182BD54C0090D8F6 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				21965877182BD5640090D8F6 /* ASAnimationManagerTest.m */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -385,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21965870182BB5360090D8F6 /* ASViewControllerTest.m in Sources */,
+				21965878182BD5640090D8F6 /* ASAnimationManagerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

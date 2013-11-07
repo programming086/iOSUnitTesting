@@ -8,6 +8,7 @@
 
 #import "ASAnimationManager.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "ASAnimationManager+Internal.h"
 
 @interface ASAnimationManager () {
     UIView *_view;          // view being animated

@@ -16,6 +16,7 @@
 
 @implementation ASViewControllerTest {
     ASViewController *_objUnderTest;
+    id _mockAnimationManager;
 }
 
 - (void)setUp {
@@ -28,6 +29,16 @@
     [super tearDown];
 }
 
+- (void)installMockAnimationManager {
+    _mockAnimationManager = [OCMockObject mockForClass:[ASAnimationManager class]];
+    _objUnderTest.animationManager = _mockAnimationManager;
+}
+
+- (void)installNiceMockAnimationManager {
+    _mockAnimationManager = [OCMockObject niceMockForClass:[ASAnimationManager class]];
+    _objUnderTest.animationManager = _mockAnimationManager;
+}
+
 - (void)sizeViewForiPhone {
     _objUnderTest.view.frame = CGRectMake(0, 0, 320, 460);
 }
@@ -36,39 +47,93 @@
     _objUnderTest.view.frame = CGRectMake(0, 0, 320, 548);
 }
 
-- (void)testVerticalButtonDidClicked_callsAnimationManager {
+- (CGPoint)topRightCornerOfView {
+    CGRect viewFrame = _objUnderTest.view.frame;
+    CGPoint topRight = CGPointMake(viewFrame.origin.x + viewFrame.size.width, 0);
+    return topRight;
+}
+
+- (CGPoint)bottomLeftCornerOfView {
+    CGRect viewFrame = _objUnderTest.view.frame;
+    CGPoint bottomLeft = CGPointMake(0, viewFrame.origin.y + viewFrame.size.height);
+    return bottomLeft;
+}
+
+- (CGPoint)ballTopRightPosition {
+    CGSize ballSize = _objUnderTest.ballImageView.frame.size;
+    CGPoint topRight = [self topRightCornerOfView];
+    return CGPointMake(topRight.x - ballSize.width / 2, ballSize.height / 2);
+}
+
+- (CGPoint)ballBottomLeftPosition {
+    CGSize ballSize = _objUnderTest.ballImageView.frame.size;
+    CGPoint bottomLeft = [self bottomLeftCornerOfView];
+    return CGPointMake(bottomLeft.x + ballSize.width / 2, bottomLeft.y - ballSize.height / 2);
+}
+
+#pragma mark - Test methods
+
+- (void)testVerticalButtonDidClicked_callsAnimationManager_iPhone {
     [self sizeViewForiPhone];
+    [self installMockAnimationManager];
     
-    id mockAnimationManager = [OCMockObject mockForClass:[ASAnimationManager class]];
-    _objUnderTest.animationManager = mockAnimationManager;
-    
-    CGPoint dest = CGPointMake(30, 430);
-    [[mockAnimationManager expect] bounceView:_objUnderTest.ballImageView to:dest];
+    CGPoint dest = [self ballBottomLeftPosition];
+    [[_mockAnimationManager expect] bounceView:_objUnderTest.ballImageView to:dest];
     
     [_objUnderTest verticalButtonDidClicked:_objUnderTest.verticalButton];
     
-    [mockAnimationManager verify];
+    [_mockAnimationManager verify];
 }
 
 - (void)testVerticalButtonDidClicked_callsAnimationManager_iPhone5 {
     [self sizeViewForiPhone5];
+    [self installMockAnimationManager];
     
-    id mockAnimationManager = [OCMockObject mockForClass:[ASAnimationManager class]];
-    _objUnderTest.animationManager = mockAnimationManager;
-    
-    CGPoint dest = CGPointMake(30, 518);
-    [[mockAnimationManager expect] bounceView:_objUnderTest.ballImageView to:dest];
+    CGPoint dest = [self ballBottomLeftPosition];
+    [[_mockAnimationManager expect] bounceView:_objUnderTest.ballImageView to:dest];
     
     [_objUnderTest verticalButtonDidClicked:_objUnderTest.verticalButton];
     
-    [mockAnimationManager verify];
+    [_mockAnimationManager verify];
 }
 
 - (void)testVerticalButtonDidClicked_hidensButtons {
-    id mockAnimationManager = [OCMockObject niceMockForClass:[ASAnimationManager class]];
-    _objUnderTest.animationManager = mockAnimationManager;
+    [self installNiceMockAnimationManager];
     
     [_objUnderTest verticalButtonDidClicked:_objUnderTest.verticalButton];
+    
+    STAssertTrue(_objUnderTest.verticalButton.hidden, nil);
+    STAssertTrue(_objUnderTest.horizontalButton.hidden, nil);
+}
+
+- (void)testHorizontalButtonDidClicked_callsAnimationManager_iPhone {
+    [self sizeViewForiPhone];
+    [self installMockAnimationManager];
+    
+    CGPoint dest = [self ballTopRightPosition];
+    [[_mockAnimationManager expect] bounceView:_objUnderTest.ballImageView to:dest];
+    
+    [_objUnderTest horizontalButtonDidClicked:_objUnderTest.horizontalButton];
+    
+    [_mockAnimationManager verify];
+}
+
+- (void)testHorizontalButtonDidClicked_callsAnimationManager_iPhone5 {
+    [self sizeViewForiPhone5];
+    [self installMockAnimationManager];
+    
+    CGPoint dest = [self ballTopRightPosition];
+    [[_mockAnimationManager expect] bounceView:_objUnderTest.ballImageView to:dest];
+    
+    [_objUnderTest horizontalButtonDidClicked:_objUnderTest.horizontalButton];
+    
+    [_mockAnimationManager verify];
+}
+
+- (void)testHorizontalButtonDidClicked_hidensButtons {
+    [self installNiceMockAnimationManager];
+    
+    [_objUnderTest horizontalButtonDidClicked:_objUnderTest.verticalButton];
     
     STAssertTrue(_objUnderTest.verticalButton.hidden, nil);
     STAssertTrue(_objUnderTest.horizontalButton.hidden, nil);

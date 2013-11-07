@@ -64,4 +64,24 @@
     [mockAnimationManager verify];
 }
 
+- (void)testVerticalButtonDidClicked_hidensButtons {
+    id mockAnimationManager = [OCMockObject niceMockForClass:[ASAnimationManager class]];
+    _objUnderTest.animationManager = mockAnimationManager;
+    
+    [_objUnderTest verticalButtonDidClicked:_objUnderTest.verticalButton];
+    
+    STAssertTrue(_objUnderTest.verticalButton.hidden, nil);
+    STAssertTrue(_objUnderTest.horizontalButton.hidden, nil);
+}
+
+- (void)testAnimationComplete_showsButtons {
+    _objUnderTest.verticalButton.hidden = YES;
+    _objUnderTest.horizontalButton.hidden = YES;
+    
+    [_objUnderTest animationComplete];
+    
+    STAssertFalse(_objUnderTest.verticalButton.hidden, nil);
+    STAssertFalse(_objUnderTest.horizontalButton.hidden, nil);
+}
+
 @end

@@ -37,13 +37,26 @@
 }
 
 - (void)testVerticalButtonDidClicked_callsAnimationManager {
-    
     [self sizeViewForiPhone];
     
     id mockAnimationManager = [OCMockObject mockForClass:[ASAnimationManager class]];
     _objUnderTest.animationManager = mockAnimationManager;
     
     CGPoint dest = CGPointMake(30, 430);
+    [[mockAnimationManager expect] bounceView:_objUnderTest.ballImageView to:dest];
+    
+    [_objUnderTest verticalButtonDidClicked:_objUnderTest.verticalButton];
+    
+    [mockAnimationManager verify];
+}
+
+- (void)testVerticalButtonDidClicked_callsAnimationManager_iPhone5 {
+    [self sizeViewForiPhone5];
+    
+    id mockAnimationManager = [OCMockObject mockForClass:[ASAnimationManager class]];
+    _objUnderTest.animationManager = mockAnimationManager;
+    
+    CGPoint dest = CGPointMake(30, 518);
     [[mockAnimationManager expect] bounceView:_objUnderTest.ballImageView to:dest];
     
     [_objUnderTest verticalButtonDidClicked:_objUnderTest.verticalButton];

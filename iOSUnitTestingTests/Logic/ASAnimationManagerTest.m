@@ -43,6 +43,16 @@
     [super tearDown];
 }
 
+- (void)waitForAnimation {
+    NSTimeInterval timeout = 2 * ANIMATION_DURATION + 0.1;
+    NSDate *loopUntil = [NSDate dateWithTimeIntervalSinceNow:timeout];
+    while ([loopUntil timeIntervalSinceNow] > 0) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:loopUntil];
+    }
+}
+
+#pragma mark - Test methods
+
 - (void)testViewReturnsHomeAfterAnimationsComplete {
     CGPoint originalViewCenter = _viewBeingAnimated.center;
     
@@ -50,7 +60,7 @@
     
     [_objUnderTest bounceView:_viewBeingAnimated to:CGPointMake(5, 95)];
     
-    [NSThread sleepForTimeInterval:2 * ANIMATION_DURATION + 0.1];
+    [self waitForAnimation];
     
     CGPoint viewCenter = _viewBeingAnimated.center;
     

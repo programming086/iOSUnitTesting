@@ -11,7 +11,7 @@
 @interface ASAnimationSegment : NSObject
 
 @property (nonatomic, readonly) CGPoint destCenter;
-@property (nonatomic, readonly) BOOL playSoundAtEnd;
+@property (nonatomic, readonly, getter = isPlaySoundAtEnd) BOOL playSoundAtEnd;
 
 - (id)initWithPoint:(CGPoint)destPoint playSoundAtEnd:(BOOL)playSoundAtEnd;
 

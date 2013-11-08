@@ -18,6 +18,8 @@
 
 @property (weak, nonatomic) id<ASAnimationManagerDelegate> delegate;
 
-- (void)bounceView:(UIView *)view to:(CGPoint)dest;
+- (void)verticalBounce:(UIView *)view;
+- (void)horizontalBounce:(UIView *)view;
+- (void)fourCornerBounce:(UIView *)view;
 
 @end

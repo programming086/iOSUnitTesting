@@ -10,6 +10,7 @@
 #import <OCMock/OCMock.h>
 #import "ASAnimationManager.h"
 #import "ASAnimationManager+Internal.h"
+#import "ASAnimationSegment.h"
 
 #define ANIMATION_DURATION 0.1
 
@@ -22,6 +23,7 @@
     id _mockDelegate;
     UIView *_parentView;
     UIView *_viewBeingAnimated;
+    NSArray *_savedSegments;
 }
 
 - (void)setUp {
@@ -51,26 +53,38 @@
     }
 }
 
+- (void)saveAnimationSegments:(NSArray *)segments {
+    _savedSegments = segments;
+}
+
 #pragma mark - Test methods
 
-- (void)testViewReturnsHomeAfterAnimationsComplete {
+- (void)testVerticalBounce_startsAnimationToLowerLeftCorner {
+    CGSize parentSize = _parentView.frame.size;
     CGPoint originalViewCenter = _viewBeingAnimated.center;
-    
-    [[_mockDelegate expect] animationComplete];
+    CGPoint lowerLeftCenter = CGPointMake(_viewBeingAnimated.bounds.size.width / 2,
+                                          parentSize.height - _viewBeingAnimated.bounds.size.height / 2);
     
     id wrapper = [OCMockObject partialMockForObject:_objUnderTest];
-    [[wrapper expect] _playBounceSound];
+    [[[wrapper expect] andCall:@selector(saveAnimationSegments:) onObject:self] _beginAnimations:OCMOCK_ANY];
     
-    [wrapper bounceView:_viewBeingAnimated to:CGPointMake(5, 95)];
+    [wrapper verticalBounce:_viewBeingAnimated];
     
-    [self waitForAnimation];
-    
-    CGPoint viewCenter = _viewBeingAnimated.center;
-    
-    STAssertEquals(viewCenter.x, originalViewCenter.x, nil);
-    STAssertEquals(viewCenter.y, originalViewCenter.y, nil);
     [_mockDelegate verify];
     [wrapper verify];
+    
+    STAssertEquals([_savedSegments count], (NSUInteger)2, nil);
+    
+    ASAnimationSegment *seg1 = _savedSegments[0];
+    STAssertEquals(seg1.destCenter.x, lowerLeftCenter.x, nil);
+    STAssertEquals(seg1.destCenter.y, lowerLeftCenter.y, nil);
+    STAssertTrue(seg1.isPlaySoundAtEnd, nil);
+    
+    ASAnimationSegment *seg2 = _savedSegments[1];
+    STAssertEquals(seg2.destCenter.x, originalViewCenter.x, nil);
+    STAssertEquals(seg2.destCenter.y, originalViewCenter.y, nil);
+    STAssertFalse(seg2.isPlaySoundAtEnd, nil);
 }
+
 
 @end

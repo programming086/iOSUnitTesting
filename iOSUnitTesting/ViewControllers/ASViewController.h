@@ -14,11 +14,14 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ballImageView;
 @property (weak, nonatomic) IBOutlet UIButton *verticalButton;
 @property (weak, nonatomic) IBOutlet UIButton *horizontalButton;
+@property (weak, nonatomic) IBOutlet UIButton *fourCornerButton;
 
 @property (strong, nonatomic) ASAnimationManager *animationManager;
 
 - (IBAction)verticalButtonDidClicked:(id)sender;
 
 - (IBAction)horizontalButtonDidClicked:(id)sender;
+
+- (IBAction)fourCornerButtonDidClicked:(id)sender;
 
 @end

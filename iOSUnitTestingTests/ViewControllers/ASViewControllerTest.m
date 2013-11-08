@@ -22,6 +22,7 @@
 - (void)setUp {
     [super setUp];
     _objUnderTest = [[ASViewController alloc] init];
+    [_objUnderTest view];
 }
 
 - (void)tearDown {
@@ -77,8 +78,7 @@
     [self sizeViewForiPhone];
     [self installMockAnimationManager];
     
-    CGPoint dest = [self ballBottomLeftPosition];
-    [[_mockAnimationManager expect] bounceView:_objUnderTest.ballImageView to:dest];
+    [[_mockAnimationManager expect] verticalBounce:_objUnderTest.ballImageView];
     
     [_objUnderTest verticalButtonDidClicked:_objUnderTest.verticalButton];
     
@@ -89,8 +89,7 @@
     [self sizeViewForiPhone5];
     [self installMockAnimationManager];
     
-    CGPoint dest = [self ballBottomLeftPosition];
-    [[_mockAnimationManager expect] bounceView:_objUnderTest.ballImageView to:dest];
+    [[_mockAnimationManager expect] verticalBounce:_objUnderTest.ballImageView];
     
     [_objUnderTest verticalButtonDidClicked:_objUnderTest.verticalButton];
     
@@ -104,14 +103,14 @@
     
     STAssertTrue(_objUnderTest.verticalButton.hidden, nil);
     STAssertTrue(_objUnderTest.horizontalButton.hidden, nil);
+    STAssertTrue(_objUnderTest.fourCornerButton.hidden, nil);
 }
 
 - (void)testHorizontalButtonDidClicked_callsAnimationManager_iPhone {
     [self sizeViewForiPhone];
     [self installMockAnimationManager];
     
-    CGPoint dest = [self ballTopRightPosition];
-    [[_mockAnimationManager expect] bounceView:_objUnderTest.ballImageView to:dest];
+    [[_mockAnimationManager expect] horizontalBounce:_objUnderTest.ballImageView];
     
     [_objUnderTest horizontalButtonDidClicked:_objUnderTest.horizontalButton];
     
@@ -122,8 +121,7 @@
     [self sizeViewForiPhone5];
     [self installMockAnimationManager];
     
-    CGPoint dest = [self ballTopRightPosition];
-    [[_mockAnimationManager expect] bounceView:_objUnderTest.ballImageView to:dest];
+    [[_mockAnimationManager expect] horizontalBounce:_objUnderTest.ballImageView];
     
     [_objUnderTest horizontalButtonDidClicked:_objUnderTest.horizontalButton];
     
@@ -137,16 +135,51 @@
     
     STAssertTrue(_objUnderTest.verticalButton.hidden, nil);
     STAssertTrue(_objUnderTest.horizontalButton.hidden, nil);
+    STAssertTrue(_objUnderTest.fourCornerButton.hidden, nil);
+}
+
+- (void)testFourCornerButtonDidClicked_callsAnimationManager_iPhone {
+    [self sizeViewForiPhone];
+    [self installMockAnimationManager];
+    
+    [[_mockAnimationManager expect] fourCornerBounce:_objUnderTest.ballImageView];
+    
+    [_objUnderTest fourCornerButtonDidClicked:_objUnderTest.horizontalButton];
+    
+    [_mockAnimationManager verify];
+}
+
+- (void)testFourCornerButtonDidClicked_callsAnimationManager_iPhone5 {
+    [self sizeViewForiPhone5];
+    [self installMockAnimationManager];
+    
+    [[_mockAnimationManager expect] fourCornerBounce:_objUnderTest.ballImageView];
+    
+    [_objUnderTest fourCornerButtonDidClicked:_objUnderTest.horizontalButton];
+    
+    [_mockAnimationManager verify];
+}
+
+- (void)testFourCornerButtonDidClicked_hidensButtons {
+    [self installNiceMockAnimationManager];
+    
+    [_objUnderTest fourCornerButtonDidClicked:_objUnderTest.verticalButton];
+    
+    STAssertTrue(_objUnderTest.verticalButton.hidden, nil);
+    STAssertTrue(_objUnderTest.horizontalButton.hidden, nil);
+    STAssertTrue(_objUnderTest.fourCornerButton.hidden, nil);
 }
 
 - (void)testAnimationComplete_showsButtons {
     _objUnderTest.verticalButton.hidden = YES;
     _objUnderTest.horizontalButton.hidden = YES;
+    _objUnderTest.fourCornerButton.hidden = YES;
     
     [_objUnderTest animationComplete];
     
     STAssertFalse(_objUnderTest.verticalButton.hidden, nil);
     STAssertFalse(_objUnderTest.horizontalButton.hidden, nil);
+    STAssertFalse(_objUnderTest.fourCornerButton.hidden, nil);
 }
 
 @end

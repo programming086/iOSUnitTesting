@@ -11,7 +11,14 @@
 @interface ASAnimationManager ()
 
 @property (assign, nonatomic) NSTimeInterval duration;
+@property (strong, nonatomic) NSArray *animationSegments;
+@property (assign, nonatomic) NSUInteger currentSegmentIndex;
+@property (weak, nonatomic) UIView *viewBeingAnimated;
 
 - (void)_playBounceSound;
+
+- (void)_beginAnimations:(NSArray *)segments;
+- (void)_beginCurrentAnimationSegment;
+- (void)_currentAnimationSegmentEnded:(BOOL)complete;
 
 @end

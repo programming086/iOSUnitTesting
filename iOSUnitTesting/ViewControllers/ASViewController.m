@@ -42,28 +42,26 @@
 #pragma mark - Actions methods
 
 - (IBAction)verticalButtonDidClicked:(id)sender {
-    // Destination is bottom edge of screen minus radius of ball
-    CGSize ballSize = self.ballImageView.bounds.size;
-    CGSize viewSize = self.view.bounds.size;
-    CGPoint dest = CGPointMake(_ballHomePosition.x, viewSize.height - ballSize.height / 2);
-    [self _bounceBallTo:dest];
+    [self _animationStarted];
+    [self.animationManager verticalBounce:self.ballImageView];
 }
 
 - (IBAction)horizontalButtonDidClicked:(id)sender {
-    // Destination is right edge of screen minus radius of ball
-    CGSize ballSize = self.ballImageView.bounds.size;
-    CGSize viewSize = self.view.bounds.size;
-    CGPoint dest = CGPointMake(viewSize.width - ballSize.width / 2, _ballHomePosition.y);
-    [self _bounceBallTo:dest];
+    [self _animationStarted];
+    [self.animationManager horizontalBounce:self.ballImageView];
+}
+
+- (IBAction)fourCornerButtonDidClicked:(id)sender {
+    [self _animationStarted];
+    [self.animationManager fourCornerBounce:self.ballImageView];
 }
 
 #pragma mark - private methods
 
-- (void)_bounceBallTo:(CGPoint)dest {
+- (void)_animationStarted {
     self.verticalButton.hidden = YES;
     self.horizontalButton.hidden = YES;
-    
-    [self.animationManager bounceView:self.ballImageView to:dest];
+    self.fourCornerButton.hidden = YES;
 }
 
 #pragma mark - ASAnimationManager delegate methods
@@ -71,6 +69,7 @@
 - (void)animationComplete {
     self.verticalButton.hidden = NO;
     self.horizontalButton.hidden = NO;
+    self.fourCornerButton.hidden = NO;
 }
 
 @end

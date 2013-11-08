@@ -86,5 +86,72 @@
     STAssertFalse(seg2.isPlaySoundAtEnd, nil);
 }
 
+- (void)testHorizontalBounce_startsAnimationToUpperRightCenter {
+    CGSize parentSize = _parentView.frame.size;
+    CGPoint originalViewCenter = _viewBeingAnimated.center;
+    CGPoint upperRightCenter = CGPointMake(parentSize.width - _viewBeingAnimated.bounds.size.width / 2,
+                                          _viewBeingAnimated.bounds.size.height / 2);
+    
+    id wrapper = [OCMockObject partialMockForObject:_objUnderTest];
+    [[[wrapper expect] andCall:@selector(saveAnimationSegments:) onObject:self] _beginAnimations:OCMOCK_ANY];
+    
+    [wrapper horizontalBounce:_viewBeingAnimated];
+    
+    [_mockDelegate verify];
+    [wrapper verify];
+    
+    STAssertEquals([_savedSegments count], (NSUInteger)2, nil);
+    
+    ASAnimationSegment *seg1 = _savedSegments[0];
+    STAssertEquals(seg1.destCenter.x, upperRightCenter.x, nil);
+    STAssertEquals(seg1.destCenter.y, upperRightCenter.y, nil);
+    STAssertTrue(seg1.isPlaySoundAtEnd, nil);
+    
+    ASAnimationSegment *seg2 = _savedSegments[1];
+    STAssertEquals(seg2.destCenter.x, originalViewCenter.x, nil);
+    STAssertEquals(seg2.destCenter.y, originalViewCenter.y, nil);
+    STAssertFalse(seg2.isPlaySoundAtEnd, nil);
+}
+
+- (void)testFourCenterBounce_startsAnimationToFourCenters {
+    CGSize parentSize = _parentView.frame.size;
+    CGPoint originalViewCenter = _viewBeingAnimated.center;
+    CGPoint lowerLeftCenter = CGPointMake(_viewBeingAnimated.bounds.size.width / 2,
+                                          parentSize.height - _viewBeingAnimated.bounds.size.height / 2);
+    CGPoint lowerRightCenter = CGPointMake(parentSize.width - _viewBeingAnimated.bounds.size.width / 2,
+                                          parentSize.height - _viewBeingAnimated.bounds.size.height / 2);
+    CGPoint upperRightCenter = CGPointMake(parentSize.width - _viewBeingAnimated.bounds.size.width / 2,
+                                           _viewBeingAnimated.bounds.size.height / 2);
+    
+    id wrapper = [OCMockObject partialMockForObject:_objUnderTest];
+    [[[wrapper expect] andCall:@selector(saveAnimationSegments:) onObject:self] _beginAnimations:OCMOCK_ANY];
+    
+    [wrapper fourCornerBounce:_viewBeingAnimated];
+    
+    [_mockDelegate verify];
+    [wrapper verify];
+    
+    STAssertEquals([_savedSegments count], (NSUInteger)4, nil);
+    
+    ASAnimationSegment *seg1 = _savedSegments[0];
+    STAssertEquals(seg1.destCenter.x, lowerLeftCenter.x, nil);
+    STAssertEquals(seg1.destCenter.y, lowerLeftCenter.y, nil);
+    STAssertTrue(seg1.isPlaySoundAtEnd, nil);
+    
+    ASAnimationSegment *seg2 = _savedSegments[1];
+    STAssertEquals(seg2.destCenter.x, lowerRightCenter.x, nil);
+    STAssertEquals(seg2.destCenter.y, lowerRightCenter.y, nil);
+    STAssertTrue(seg2.isPlaySoundAtEnd, nil);
+    
+    ASAnimationSegment *seg3 = _savedSegments[2];
+    STAssertEquals(seg3.destCenter.x, upperRightCenter.x, nil);
+    STAssertEquals(seg3.destCenter.y, upperRightCenter.y, nil);
+    STAssertTrue(seg3.isPlaySoundAtEnd, nil);
+    
+    ASAnimationSegment *seg4 = _savedSegments[3];
+    STAssertEquals(seg4.destCenter.x, originalViewCenter.x, nil);
+    STAssertEquals(seg4.destCenter.y, originalViewCenter.y, nil);
+    STAssertFalse(seg4.isPlaySoundAtEnd, nil);
+}
 
 @end

@@ -154,4 +154,45 @@
     STAssertFalse(seg4.isPlaySoundAtEnd, nil);
 }
 
+- (void)test_beginAnimations_setsUpAndStarts {
+    ASAnimationSegment *seg1 = [[ASAnimationSegment alloc] initWithPoint:CGPointMake(10, 10) playSoundAtEnd:YES];
+    ASAnimationSegment *seg2 = [[ASAnimationSegment alloc] initWithPoint:CGPointMake(0, 0) playSoundAtEnd:NO];
+    
+    _objUnderTest.currentSegmentIndex = 99; // make sure it gets reset
+    
+    id wrapper = [OCMockObject partialMockForObject:_objUnderTest];
+    [[wrapper expect] _beginCurrentAnimationSegment];
+    
+    [wrapper _beginAnimations:@[seg1, seg2]];
+    
+    [wrapper verify];
+    STAssertEquals([wrapper currentSegmentIndex], (NSUInteger)0, nil);
+    
+    NSArray *segments = [wrapper animationSegments];
+    
+    STAssertEquals(segments.count, (NSUInteger)2, nil);
+    STAssertEquals(segments[0], seg1, nil);
+    STAssertEquals(segments[1], seg2, nil);
+}
+
+- (void)test_beginCurrentAnimationSegment_animatesAndCallsback {
+    CGPoint endViewCenter = CGPointMake(10, 20);
+    ASAnimationSegment *seg1 = [[ASAnimationSegment alloc] initWithPoint:endViewCenter playSoundAtEnd:YES];
+    _objUnderTest.animationSegments = @[seg1];
+    _objUnderTest.viewBeingAnimated = _viewBeingAnimated;
+    
+    id wrapper = [OCMockObject partialMockForObject:_objUnderTest];
+    [[wrapper expect] _currentAnimationSegmentEnded:NO];
+    
+    [wrapper _beginCurrentAnimationSegment];
+    
+    [self waitForAnimation];
+    
+    [wrapper verify];
+    
+    CGPoint viewCenter = _viewBeingAnimated.center;
+    STAssertEquals(viewCenter.x, endViewCenter.x, nil);
+    STAssertEquals(viewCenter.y, endViewCenter.y, nil);
+}
+
 @end

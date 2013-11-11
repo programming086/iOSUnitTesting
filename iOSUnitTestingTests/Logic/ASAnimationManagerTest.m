@@ -11,6 +11,7 @@
 #import "ASAnimationManager.h"
 #import "ASAnimationManager+Internal.h"
 #import "ASAnimationSegment.h"
+#import <AVFoundation/AVFoundation.h>
 
 #define ANIMATION_DURATION 0.1
 
@@ -21,6 +22,7 @@
 @implementation ASAnimationManagerTest {
     ASAnimationManager *_objUnderTest;
     id _mockDelegate;
+    id _mockAudioPlayer;
     UIView *_parentView;
     UIView *_viewBeingAnimated;
     NSArray *_savedSegments;
@@ -32,6 +34,8 @@
     _objUnderTest.duration = ANIMATION_DURATION;
     _mockDelegate = [OCMockObject mockForProtocol:@protocol(ASAnimationManagerDelegate)];
     _objUnderTest.delegate = _mockDelegate;
+    _mockAudioPlayer = [OCMockObject mockForClass:[AVAudioPlayer class]];
+    _objUnderTest.bouncePlayer = _mockAudioPlayer;
     _parentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     _viewBeingAnimated = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
     [_parentView addSubview:_viewBeingAnimated];
@@ -207,7 +211,7 @@
     
     id wrapper = [OCMockObject partialMockForObject:_objUnderTest];
     [[wrapper reject] _beginCurrentAnimationSegment];
-    [[wrapper reject] _playBounceSound];
+    [(AVAudioPlayer *)[_mockAudioPlayer reject] play];
     
     [[_mockDelegate expect] animationComplete];
     
@@ -215,6 +219,7 @@
     
     [_mockDelegate verify];
     [wrapper verify];
+    [_mockAudioPlayer verify];
     STAssertEquals(_viewBeingAnimated.center.x, originalViewCenter.x, nil);
     STAssertEquals(_viewBeingAnimated.center.y, originalViewCenter.y, nil);
 }
@@ -230,11 +235,12 @@
     
     id wrapper = [OCMockObject partialMockForObject:_objUnderTest];
     [[wrapper expect] _beginCurrentAnimationSegment];
-    [[wrapper expect] _playBounceSound];
+    [(AVAudioPlayer *)[_mockAudioPlayer expect] play];
     
     [wrapper _currentAnimationSegmentEnded:YES];
     
     [wrapper verify];
+    [_mockAudioPlayer verify];
     STAssertEquals([wrapper currentSegmentIndex], (NSUInteger)2, nil);
 }
 
@@ -249,11 +255,12 @@
     
     id wrapper = [OCMockObject partialMockForObject:_objUnderTest];
     [[wrapper expect] _beginCurrentAnimationSegment];
-    [[wrapper reject] _playBounceSound];
+    [(AVAudioPlayer *)[_mockAudioPlayer reject] play];
     
     [wrapper _currentAnimationSegmentEnded:YES];
     
     [wrapper verify];
+    [_mockAudioPlayer verify];
     STAssertEquals([wrapper currentSegmentIndex], (NSUInteger)2, nil);
 }
 
@@ -267,13 +274,14 @@
     
     id wrapper = [OCMockObject partialMockForObject:_objUnderTest];
     [[wrapper reject] _beginCurrentAnimationSegment];
-    [[wrapper expect] _playBounceSound];
+    [(AVAudioPlayer *)[_mockAudioPlayer expect] play];
     
     [[_mockDelegate expect] animationComplete];
     
     [wrapper _currentAnimationSegmentEnded:YES];
     
     [wrapper verify];
+    [_mockAudioPlayer verify];
 }
 
 - (void)test_currentAnimationSegmentEnded_handlesLastSegmentWithoutPlay {
@@ -286,13 +294,14 @@
     
     id wrapper = [OCMockObject partialMockForObject:_objUnderTest];
     [[wrapper reject] _beginCurrentAnimationSegment];
-    [[wrapper reject] _playBounceSound];
+    [(AVAudioPlayer *)[_mockAudioPlayer reject] play];
     
     [[_mockDelegate expect] animationComplete];
     
     [wrapper _currentAnimationSegmentEnded:YES];
     
     [wrapper verify];
+    [_mockAudioPlayer verify];
 }
 
 @end

@@ -12,7 +12,7 @@
 #import "ASAnimationSegment.h"
 
 @interface ASAnimationManager () {
-    AVAudioPlayer *_bouncePlayer;
+    
 }
 
 @end

@@ -8,12 +8,15 @@
 
 #import "ASAnimationManager.h"
 
+@class AVAudioPlayer;
+
 @interface ASAnimationManager ()
 
 @property (assign, nonatomic) NSTimeInterval duration;
 @property (strong, nonatomic) NSArray *animationSegments;
 @property (assign, nonatomic) NSUInteger currentSegmentIndex;
 @property (weak, nonatomic) UIView *viewBeingAnimated;
+@property (strong, nonatomic) AVAudioPlayer *bouncePlayer;
 
 - (void)_playBounceSound;
 

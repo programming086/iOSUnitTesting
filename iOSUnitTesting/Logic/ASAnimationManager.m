@@ -7,14 +7,12 @@
 //
 
 #import "ASAnimationManager.h"
-#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 #import "ASAnimationManager+Internal.h"
 #import "ASAnimationSegment.h"
 
 @interface ASAnimationManager () {
-    UIView *_view;          // view being animated
-    CGPoint _viewHome;      // where to return view after bounce
-    SystemSoundID _soundID; // ID for bounce sound
+    AVAudioPlayer *_bouncePlayer;
 }
 
 @end
@@ -29,16 +27,13 @@
         
         // load the sound
         NSString *soundFilePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"bounce" ofType:@"mp3"];
-        NSURL *soundFileUrl = [NSURL URLWithString:soundFilePath];
-        OSStatus status = AudioServicesCreateSystemSoundID((__bridge CFURLRef)(soundFileUrl), &_soundID);
-//        NSAssert(status == 0, @"unexpected status: %ld", status);
+        NSURL *soundFileUrl = [NSURL fileURLWithPath:soundFilePath];
+        NSError *error = nil;
+        _bouncePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileUrl error:&error];
+        NSAssert(_bouncePlayer != nil, [error localizedDescription]);
+        [_bouncePlayer prepareToPlay];
     }
     return self;
-}
-
-- (void)dealloc {
-    // unload sound
-    AudioServicesDisposeSystemSoundID(_soundID);
 }
 
 - (void)verticalBounce:(UIView *)view {
@@ -74,7 +69,7 @@
 
 // LCOV_EXCL_START
 - (void)_playBounceSound {
-    AudioServicesPlaySystemSound(_soundID);
+    [_bouncePlayer play];
 }
 // LCOV_EXCL_STOP
 

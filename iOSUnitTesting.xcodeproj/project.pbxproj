@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		216987C61830C70F00F153A9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216987C51830C70F00F153A9 /* AVFoundation.framework */; };
 		216987C718310E3C00F153A9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216987C51830C70F00F153A9 /* AVFoundation.framework */; };
+		216987C918310FB900F153A9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216987C818310FB900F153A9 /* CoreTelephony.framework */; };
 		21965817182B735D0090D8F6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21965816182B735D0090D8F6 /* UIKit.framework */; };
 		21965819182B735D0090D8F6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21965818182B735D0090D8F6 /* Foundation.framework */; };
 		2196581B182B735D0090D8F6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2196581A182B735D0090D8F6 /* CoreGraphics.framework */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		216987C51830C70F00F153A9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		216987C818310FB900F153A9 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		21965813182B735D0090D8F6 /* iOSUnitTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSUnitTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21965816182B735D0090D8F6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		21965818182B735D0090D8F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -88,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				216987C918310FB900F153A9 /* CoreTelephony.framework in Frameworks */,
 				216987C61830C70F00F153A9 /* AVFoundation.framework in Frameworks */,
 				21965817182B735D0090D8F6 /* UIKit.framework in Frameworks */,
 				21965819182B735D0090D8F6 /* Foundation.framework in Frameworks */,
@@ -132,6 +135,7 @@
 		21965815182B735D0090D8F6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				216987C818310FB900F153A9 /* CoreTelephony.framework */,
 				216987C51830C70F00F153A9 /* AVFoundation.framework */,
 				21965816182B735D0090D8F6 /* UIKit.framework */,
 				21965818182B735D0090D8F6 /* Foundation.framework */,

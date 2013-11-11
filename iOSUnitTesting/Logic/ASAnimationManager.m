@@ -10,9 +10,10 @@
 #import <AVFoundation/AVFoundation.h>
 #import "ASAnimationManager+Internal.h"
 #import "ASAnimationSegment.h"
+#import <CoreTelephony/CTCallCenter.h>
 
 @interface ASAnimationManager () {
-    
+    CTCallCenter *_callCenter;
 }
 
 @end
@@ -32,6 +33,8 @@
         _bouncePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileUrl error:&error];
         NSAssert(_bouncePlayer != nil, [error localizedDescription]);
         [_bouncePlayer prepareToPlay];
+        
+        _callCenter = [[CTCallCenter alloc] init];
     }
     return self;
 }
@@ -67,11 +70,15 @@
 
 #pragma mark - private methods
 
-// LCOV_EXCL_START
-- (void)_playBounceSound {
-    [_bouncePlayer play];
+- (BOOL)_callInProgress {
+    return _callCenter.currentCalls != nil;
 }
-// LCOV_EXCL_STOP
+
+- (void)_playBounceSound {
+    if (![self _callInProgress]) {
+        [self.bouncePlayer play];
+    }
+}
 
 - (CGPoint)_homeInParent:(UIView *)view {
     CGSize viewSize = view.bounds.size;

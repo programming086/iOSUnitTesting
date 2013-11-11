@@ -24,4 +24,6 @@
 - (void)_beginCurrentAnimationSegment;
 - (void)_currentAnimationSegmentEnded:(BOOL)complete;
 
+- (BOOL)_callInProgress;
+
 @end

@@ -244,6 +244,27 @@
     STAssertEquals([wrapper currentSegmentIndex], (NSUInteger)2, nil);
 }
 
+- (void)test_currentAnimationSegmentEnded_startsNextSegmentWithoutPlayIfNotLastButCallInProgress {
+    ASAnimationSegment *seg1 = [[ASAnimationSegment alloc] initWithPoint:CGPointMake(100, 100) playSoundAtEnd:YES];
+    ASAnimationSegment *seg2 = [[ASAnimationSegment alloc] initWithPoint:CGPointMake(0, 0) playSoundAtEnd:YES];
+    ASAnimationSegment *seg3 = [[ASAnimationSegment alloc] initWithPoint:CGPointMake(5, 5) playSoundAtEnd:NO];
+    
+    _objUnderTest.viewBeingAnimated = _viewBeingAnimated;
+    _objUnderTest.animationSegments = @[seg1, seg2, seg3];
+    _objUnderTest.currentSegmentIndex = 1;
+    
+    id wrapper = [OCMockObject partialMockForObject:_objUnderTest];
+    [[wrapper expect] _beginCurrentAnimationSegment];
+    [[[wrapper expect] andReturnValue:OCMOCK_VALUE((BOOL){YES})] _callInProgress];
+    [(AVAudioPlayer *)[_mockAudioPlayer reject] play];
+    
+    [wrapper _currentAnimationSegmentEnded:YES];
+    
+    [wrapper verify];
+    [_mockAudioPlayer verify];
+    STAssertEquals([wrapper currentSegmentIndex], (NSUInteger)2, nil);
+}
+
 - (void)test_currentAnimationSegmentEnded_startsNextSegmentWithoutPlayIfNotLast {
     ASAnimationSegment *seg1 = [[ASAnimationSegment alloc] initWithPoint:CGPointMake(100, 100) playSoundAtEnd:YES];
     ASAnimationSegment *seg2 = [[ASAnimationSegment alloc] initWithPoint:CGPointMake(0, 0) playSoundAtEnd:NO];
@@ -275,6 +296,27 @@
     id wrapper = [OCMockObject partialMockForObject:_objUnderTest];
     [[wrapper reject] _beginCurrentAnimationSegment];
     [(AVAudioPlayer *)[_mockAudioPlayer expect] play];
+    
+    [[_mockDelegate expect] animationComplete];
+    
+    [wrapper _currentAnimationSegmentEnded:YES];
+    
+    [wrapper verify];
+    [_mockAudioPlayer verify];
+}
+
+- (void)test_currentAnimationSegmentEnded_handlesLastSegmentSuppressingPlayIfCallInProgress {
+    ASAnimationSegment *seg1 = [[ASAnimationSegment alloc] initWithPoint:CGPointMake(100, 100) playSoundAtEnd:YES];
+    ASAnimationSegment *seg2 = [[ASAnimationSegment alloc] initWithPoint:CGPointMake(0, 0) playSoundAtEnd:YES];
+    
+    _objUnderTest.viewBeingAnimated = _viewBeingAnimated;
+    _objUnderTest.animationSegments = @[seg1, seg2];
+    _objUnderTest.currentSegmentIndex = 1;
+    
+    id wrapper = [OCMockObject partialMockForObject:_objUnderTest];
+    [[wrapper reject] _beginCurrentAnimationSegment];
+    [[[wrapper expect] andReturnValue:OCMOCK_VALUE((BOOL){YES})] _callInProgress];
+    [(AVAudioPlayer *)[_mockAudioPlayer reject] play];
     
     [[_mockDelegate expect] animationComplete];
     

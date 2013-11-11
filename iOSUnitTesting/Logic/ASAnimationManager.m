@@ -72,9 +72,11 @@
 
 #pragma mark - private methods
 
+// LCOV_EXCL_START
 - (void)_playBounceSound {
     AudioServicesPlaySystemSound(_soundID);
 }
+// LCOV_EXCL_STOP
 
 - (CGPoint)_homeInParent:(UIView *)view {
     CGSize viewSize = view.bounds.size;
